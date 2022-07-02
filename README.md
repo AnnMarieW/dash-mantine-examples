@@ -9,7 +9,6 @@ to demonstrate basic usage of the components available in the [dash-mantine-comp
 
 
 ## Example app and Code side by side
-With full screen options available
+With full screen options available.
 
-![img.png](img.png)
-
+![image](https://user-images.githubusercontent.com/72614349/177017494-3b20fd83-f5fa-4a1c-a83b-1cf866d2a6f3.png)
