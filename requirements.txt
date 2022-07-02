@@ -1,0 +1,4 @@
+dash==2.5.1
+requests==2.27.1
+dash-mantine-components>=0.10.2
+selenium
