@@ -34,7 +34,7 @@ for page in file_names:
 app.layout = dmc.MantineProvider(
     id="theme-provider",
     theme={
-        "colorScheme": "light",
+        "colorScheme": "dark",
         "fontFamily": "'Inter', sans-serif",
         "primaryColor": "indigo",
     },

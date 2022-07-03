@@ -206,7 +206,6 @@ clientside_callback(
     }""",
     Output("theme-provider", "theme"),
     Input("color-scheme-toggle", "value"),
-    prevent_initial_callback=True,
 )
 
 

@@ -44,10 +44,11 @@ def get_app_image_names():
     return app_images
 
 
-def get_missing_image_names():
+def get_missing_image_names(theme="light"):
     images = get_app_image_names()
-    missing = [app for app in file_names if app not in images]
-    return missing
+    if theme == "dark":
+        return [app for app in file_names if f"{app}-dark" not in images]
+    return [app for app in file_names if app not in images]
 
 
 def file_name_from_path(path):

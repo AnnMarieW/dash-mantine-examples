@@ -27,7 +27,10 @@ def make_docs_btn(path):
         )
 
 
-def make_card(page):
+def make_card(page, theme):
+    filename = page["module"].split("pages.")[-1]
+    image = f"{filename}-dark.png" if theme == "dark" else page["image"]
+
     return dmc.Paper(
         [
             html.Div(
@@ -38,7 +41,7 @@ def make_card(page):
                                 make_header(page.get("card_title", page["name"])),
                                 dmc.Divider(style={"marginBottom": 20}),
                                 dmc.Image(
-                                    src=dash.get_asset_url(page["image"]),
+                                    src=dash.get_asset_url(image),
                                     # height=300,
                                     fit="contain",
                                 ),
@@ -53,17 +56,18 @@ def make_card(page):
             ),
         ],
         shadow="lg",
-        p=40,
+        withBorder=True,
+        p=20,
     )
 
 
-def make_card_grid(registry=None):
+def make_card_grid(registry=None, theme="light"):
     if registry is None:
         registry = dash.page_registry.values()
 
     return dmc.Grid(
         [
-            dmc.Col(html.Div(make_card(page)), sm=6, lg=4)
+            dmc.Col(html.Div(make_card(page, theme)), sm=6, lg=4)
             for page in registry
             if page["path"] != "/"
         ],

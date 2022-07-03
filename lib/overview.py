@@ -21,7 +21,7 @@ match_case_switch = html.Div(
             style={"paddingTop": 5},
             persistence="true",
         ),
-    ]
+    ],
 )
 
 
@@ -62,7 +62,11 @@ def layout(filter=None, *other):
         children = make_card_grid(registry=dash.page_registry.values())
 
     return html.Div(
-        [search_code_div, html.Div(id="overview-x-grid", children=children)],
+        [
+            search_code_div,
+            dmc.Space(h=20),
+            html.Div(id="overview-x-grid", children=children),
+        ],
         style={"padding": 20},
     )
 
@@ -72,9 +76,11 @@ def layout(filter=None, *other):
     Output("overview-x-code-search-input", "value"),
     Input("overview-x-code-search-input", "value"),
     Input("overview-x-case-sensitive", "checked"),
+    Input("color-scheme-toggle", "value"),
     prevent_initial_call=True,
 )
-def update(searchterms, case_sensitive):
+def update(searchterms, case_sensitive, theme):
+    print(theme)
     input_id = ctx.triggered_id
     registry = dash.page_registry.values()
 
@@ -83,5 +89,5 @@ def update(searchterms, case_sensitive):
         if searchterms:
             filtered_example_app_names = search_code_files(searchterms, case_sensitive)
             registry = filtered_registry(filtered_example_app_names)
-            return make_card_grid(registry=registry), dash.no_update
-    return make_card_grid(registry=registry), None
+            return make_card_grid(registry=registry, theme=theme), dash.no_update
+    return make_card_grid(registry=registry, theme=theme), None
