@@ -18,8 +18,8 @@ match_case_switch = html.Div(
             offLabel="OFF",
             onLabel="ON",
             size="lg",
-            style={"padding-top": 5},
-            persistence=True,
+            style={"paddingTop": 5},
+            persistence="true",
         ),
     ]
 )
@@ -51,7 +51,6 @@ def layout(filter=None, *other):
     May pass query stings to filter the examples.
     If using query strings, the variable name must be `filter`.  eg `http://127.0.0.1:8050/?filter=dropdown`
     """
-    print("filter", filter)
 
     if filter:
         # filter apps based on query strings
@@ -76,7 +75,6 @@ def layout(filter=None, *other):
     prevent_initial_call=True,
 )
 def update(searchterms, case_sensitive):
-    print("CS", case_sensitive)
     input_id = ctx.triggered_id
     registry = dash.page_registry.values()
 

@@ -57,9 +57,12 @@ def make_side_by_side(code, show_app, notes):
             dmc.Col(
                 children=dmc.Paper(
                     children=dmc.Prism(
-                        language="python", children=code, colorScheme="dark"
+                        language="python",
+                        children=code,
+                        colorScheme="dark",
+                        #   noCopy=True,
                     ),
-                    style={"max-height": "600px", "overflow": "auto"},
+                    style={"maxHeight": "600px", "overflow": "auto"},
                 ),
                 lg=6,
             )
@@ -88,7 +91,14 @@ def make_app_first(code, show_app, notes):
     return dmc.Group(
         [
             dmc.Paper(show_app, p=10, withBorder=True) if show_app else None,
-            dmc.Paper(dmc.Prism(language="python", children=code, colorScheme="dark"))
+            dmc.Paper(
+                dmc.Prism(
+                    language="python",
+                    children=code,
+                    colorScheme="dark",
+                    # noCopy=True
+                )
+            )
             if code != ""
             else None,
             dcc.Markdown(notes, style={"margin": 10}, link_target="_blank")

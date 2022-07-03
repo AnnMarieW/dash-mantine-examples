@@ -28,10 +28,6 @@ def make_docs_btn(path):
 
 
 def make_card(page):
-    from dash_labs import print_registry
-
-    print_registry(exclude="layout")
-
     return dmc.Paper(
         [
             html.Div(
@@ -40,7 +36,7 @@ def make_card(page):
                         html.Div(
                             [
                                 make_header(page.get("card_title", page["name"])),
-                                dmc.Divider(style={"margin-bottom": 20}),
+                                dmc.Divider(style={"marginBottom": 20}),
                                 dmc.Image(
                                     src=dash.get_asset_url(page["image"]),
                                     # height=300,

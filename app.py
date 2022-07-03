@@ -173,7 +173,12 @@ def toggle_modal(n_app, n_code, is_open, pathname):
     if filename in example_apps:
         layout = example_apps[filename].layout
         code = example_source_codes[filename].replace(filename + "-x-", "")
-        code = dmc.Prism(language="python", children=code, colorScheme="dark")
+        code = dmc.Prism(
+            language="python",
+            children=code,
+            colorScheme="dark",
+            # noCopy=True
+        )
     content = layout if ctx.triggered_id == "open-fs-app" else code
 
     if n_app or n_code:
