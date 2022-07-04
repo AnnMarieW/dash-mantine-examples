@@ -104,3 +104,22 @@ def search_code_files(
         return set.intersection(*search_results)
     # search_type is "or"
     return set.union(*search_results)
+
+
+def filter_registry(
+    searchterms, case_sensitive, search_type="and", include_description=True
+):
+    """
+    Returns a filtered dash.page_registry dict based on a list of example app names
+    """
+
+    filtered_example_app_list = search_code_files(searchterms, case_sensitive)
+
+    # We use the module param to filter the dash_page_registry
+    # Note that the module name includes the pages folder name eg: "pages.bar-charts"
+    filtered_registry = []
+    for page in dash.page_registry.values():
+        filename = page["module"].split("pages.")[1]
+        if filename in filtered_example_app_list:
+            filtered_registry.append(page)
+    return filtered_registry

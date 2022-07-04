@@ -12,7 +12,6 @@ scripts = [
 
 app = Dash(
     __name__,
-    suppress_callback_exceptions=True,
     use_pages=True,
     external_scripts=scripts,
 )
@@ -177,7 +176,6 @@ def toggle_modal(n_app, n_code, is_open, pathname):
             language="python",
             children=code,
             colorScheme="dark",
-            # noCopy=True
         )
     content = layout if ctx.triggered_id == "open-fs-app" else code
 
@@ -186,14 +184,15 @@ def toggle_modal(n_app, n_code, is_open, pathname):
     return is_open, content
 
 
-@app.callback(
-    Output("url", "href"), Input("modal-fs", "opened"), State("url", "pathname")
-)
-def refresh_page(is_open, pathname):
-    """refreshes screen when full screen mode is closed, else example app callbacks don't fire"""
-    if is_open is None:
-        return dash.no_update
-    return pathname if not is_open else dash.no_update
+#
+# @app.callback(
+#     Output("url", "href"), Input("modal-fs", "opened"), State("url", "pathname")
+# )
+# def refresh_page(is_open, pathname):
+#     """refreshes screen when full screen mode is closed, else example app callbacks don't fire"""
+#     if is_open is None:
+#         return dash.no_update
+#     return pathname if not is_open else dash.no_update
 
 
 clientside_callback(
